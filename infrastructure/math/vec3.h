@@ -11,7 +11,7 @@
 #import <string>
 
 using namespace std;
-namespace vecmath {
+namespace bla {
     /**
      * Represents a vector or a point in 3D space. This class simply represents:
      * </b>
@@ -58,8 +58,20 @@ namespace vecmath {
             return Vector3(x + v.x, y + v.y, z + v.z);
         }
 
+        inline Vector3 operator+=(Vector3 &v) {
+            x += v.x;
+            y += v.y;
+            z += v.z;
+        }
+
         inline Vector3 operator-(Vector3 &v) {
             return Vector3(x - v.x, y - v.y, z - v.z);
+        }
+
+        inline Vector3 operator-=(Vector3 &v) {
+            x -= v.x;
+            y -= v.y;
+            z -= v.z;
         }
 
         /**
@@ -69,6 +81,12 @@ namespace vecmath {
          */
         inline Vector3 operator*(double scalar) {
             return Vector3(scalar * x, scalar * y, scalar * z);
+        }
+
+        inline Vector3 operator*=(double scalar) {
+            x *= scalar;
+            y *= scalar;
+            z *= scalar;
         }
 
         /**
@@ -81,6 +99,13 @@ namespace vecmath {
             return Vector3(s * x, s * y, s * z);
         }
 
+        inline Vector3 operator*=(int scalar) {
+            double s = (double) scalar;//the scalar as a double
+            x *= s;
+            y *= s;
+            z *= s;
+        }
+
         /**
         * Scalar multiplication.
         * @param scalar the scalar
@@ -89,6 +114,13 @@ namespace vecmath {
         inline Vector3 operator*(float scalar) {
             double s = (double) scalar;//the scalar as a double
             return Vector3(s * x, s * y, s * z);
+        }
+
+        inline Vector3 operator*=(float scalar) {
+            double s = (double) scalar;//the scalar as a double
+            x *= s;
+            y *= s;
+            z *= s;
         }
 
         /**
@@ -157,6 +189,7 @@ namespace vecmath {
         }
 
     };
+
     /**Zero vector.*/
     static const Vector3 VEC_ZERO = Vector3(0.0, 0.0, 0.0);
     /**Unit vector I.*/

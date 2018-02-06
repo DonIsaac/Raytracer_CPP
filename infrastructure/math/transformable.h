@@ -9,7 +9,7 @@
 #include "mat4.h"
 
 using namespace std;
-namespace vecmath{
+namespace bla{
     /**
      * Represents any object that can be transformed in 3D space.
      * This class is meant to be used with any object that has a
@@ -18,12 +18,12 @@ namespace vecmath{
      */
     class Transformable{
     public:
-        virtual Matrix4 *translate(double x, double y, double z) = 0;
-        virtual Matrix4 *translate(Vector3 v) = 0;
-        virtual Matrix4 *rotX(double theta, bool aroundOrigin) = 0;
-        virtual Matrix4 *rotY(double theta, bool aroundOrigin) = 0;
-        virtual Matrix4 *rotZ(double theta, bool aroundOrigin) = 0;
-        virtual Matrix4 *transform(Matrix4 M) =0;
+        virtual void translate(double x, double y, double z) = 0;
+        virtual void translate(Vector3 v) = 0;
+        virtual void rotX(double theta, bool aroundOrigin) = 0;
+        virtual void rotY(double theta, bool aroundOrigin) = 0;
+        virtual void rotZ(double theta, bool aroundOrigin) = 0;
+        virtual void transform(Matrix4 M) =0;
     };
 }
 #endif //RAYTRACER_C_TRANSFORMABLE_H

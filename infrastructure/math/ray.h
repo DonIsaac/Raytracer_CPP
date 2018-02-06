@@ -8,7 +8,7 @@
 #include "vec3.h"
 
 using namespace std;
-namespace vecmath {
+namespace bla {
     /**
      * Represents a ray in 3D space. A ray is defined as:
      * </br>

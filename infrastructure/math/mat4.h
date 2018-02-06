@@ -10,7 +10,7 @@
 #include <array>
 
 using namespace std;
-namespace vecmath {
+namespace bla {
     static const array<double, SIZE> idMtx = {
             1.0, 0.0, 0.0, 0.0,
             0.0, 1.0, 0.0, 0.0,
@@ -260,7 +260,7 @@ namespace vecmath {
             return Matrix4(newmat);
         }
 
-        Matrix4 operator+(Matrix4 &M) {
+        inline Matrix4 operator+(Matrix4 &M) {
             array<double, SIZE> matrix;
 
             for (int i = 0; i < SIZE; i++) {
@@ -270,7 +270,7 @@ namespace vecmath {
             return Matrix4(matrix);
         }
 
-        Matrix4 operator-(Matrix4 &M) {
+        inline Matrix4 operator-(Matrix4 &M) {
             array<double, SIZE> matrix;
 
             for (int i = 0; i < SIZE; i++) {
@@ -343,7 +343,7 @@ namespace vecmath {
          *            how much to translate along the Z-axis
          * @return a reference to this matrix for method chaining
          */
-        Matrix4 *translate(double x, double y, double z) {
+        inline Matrix4 *translate(double x, double y, double z) {
             mat[12] += x;
             mat[13] += y;
             mat[14] += z;
@@ -361,7 +361,7 @@ namespace vecmath {
          *
          * @see infrastructure.math.Vector3
          */
-        Matrix4 *translate(Vector3 v) {
+        inline Matrix4 *translate(Vector3 v) {
             return translate(v.x, v.y, v.z);
         }
 
