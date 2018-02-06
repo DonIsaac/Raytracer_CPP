@@ -15,6 +15,8 @@ namespace bla{
      * This class is meant to be used with any object that has a
      * <code>Matrix4</code> field, allowing for external code to
      * modify said <code>Matrix4</code> in a controlled manner.
+     *
+     * @author Donald Isaac
      */
     class Transformable{
     public:

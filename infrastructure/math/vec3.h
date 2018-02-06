@@ -58,7 +58,7 @@ namespace bla {
 
             return *this;
         }
-        
+
         Vector3 operator-(Vector3 &v) {
             return Vector3(x - v.x, y - v.y, z - v.z);
         }
