@@ -7,8 +7,8 @@
 #ifndef RAYTRACER_C_VEC3_H
 #define RAYTRACER_C_VEC3_H
 
-#import <cmath>
-#import <string>
+#include <cmath>
+#include <string>
 
 using namespace std;
 namespace bla {
@@ -33,45 +33,42 @@ namespace bla {
         /**The Z value*/
         double z;
 
-        /**
-         * Creates a Vector3 object at (0, 0, 0).
-         */
-        Vector3() {
-            x = 0.0;
-            y = 0.0;
-            z = 0.0;
-        }
+
 
         /**
          * Creates a Vector3 object with specified values.
-         * @param nx the x value of the vector
-         * @param ny the y value of the vector
-         * @param nz the z value of the vector
+         * @param nx the x value of the vector. Default value is 0.0
+         * @param ny the y value of the vector. Default value is 0.0
+         * @param nz the z value of the vector. Default value is 0.0
          */
-        Vector3(double nx, double ny, double nz) {
+        Vector3(double nx = 0.0, double ny = 0.0, double nz=0.0) {
             x = nx;
             y = ny;
             z = nz;
         }
 
-        inline Vector3 operator+(Vector3 &v) {
+        Vector3 operator+(Vector3 &v) {
             return Vector3(x + v.x, y + v.y, z + v.z);
         }
 
-        inline Vector3 operator+=(Vector3 &v) {
-            x += v.x;
-            y += v.y;
-            z += v.z;
-        }
+        Vector3& operator+=(Vector3 &v) {
+            this->x += v.x;
+            this->y += v.y;
+            this->z += v.z;
 
-        inline Vector3 operator-(Vector3 &v) {
+            return *this;
+        }
+        
+        Vector3 operator-(Vector3 &v) {
             return Vector3(x - v.x, y - v.y, z - v.z);
         }
 
-        inline Vector3 operator-=(Vector3 &v) {
-            x -= v.x;
-            y -= v.y;
-            z -= v.z;
+        Vector3& operator-=(Vector3 &v) {
+            this->x -= v.x;
+            this->y -= v.y;
+            this->z -= v.z;
+
+            return *this;
         }
 
         /**
@@ -79,14 +76,16 @@ namespace bla {
          * @param scalar the scalar
          * @return the vector scaled by <b>s</b>
          */
-        inline Vector3 operator*(double scalar) {
+        Vector3 operator*(double scalar) {
             return Vector3(scalar * x, scalar * y, scalar * z);
         }
 
-        inline Vector3 operator*=(double scalar) {
-            x *= scalar;
-            y *= scalar;
-            z *= scalar;
+        Vector3& operator*=(double scalar) {
+            this->x *= scalar;
+            this->y *= scalar;
+            this->z *= scalar;
+
+            return *this;
         }
 
         /**
@@ -94,16 +93,18 @@ namespace bla {
         * @param scalar the scalar
         * @return the vector scaled by <b>s</b>
         */
-        inline Vector3 operator*(int scalar) {
+        Vector3 operator*(int scalar) {
             double s = (double) scalar;//the scalar as a double
             return Vector3(s * x, s * y, s * z);
         }
 
-        inline Vector3 operator*=(int scalar) {
+        Vector3& operator*=(int scalar) {
             double s = (double) scalar;//the scalar as a double
-            x *= s;
-            y *= s;
-            z *= s;
+            this->x *= s;
+            this->y *= s;
+            this->z *= s;
+
+            return *this;
         }
 
         /**
@@ -111,12 +112,12 @@ namespace bla {
         * @param scalar the scalar
         * @return the vector scaled by <b>s</b>
         */
-        inline Vector3 operator*(float scalar) {
+        Vector3 operator*(float scalar) {
             double s = (double) scalar;//the scalar as a double
             return Vector3(s * x, s * y, s * z);
         }
 
-        inline Vector3 operator*=(float scalar) {
+        Vector3 operator*=(float scalar) {
             double s = (double) scalar;//the scalar as a double
             x *= s;
             y *= s;
@@ -124,12 +125,16 @@ namespace bla {
         }
 
         /**
-    * Dot (inner) product.
-    * @param u the other vector to use in the calculation
-    * @return the dot product between this vector and u
-    */
-        inline double operator*(Vector3 u) {
-            return u.x * x + u.y * y + u.z * z;
+         * Dot (inner) product.
+         * @param u the other vector to use in the calculation
+         * @return the dot product between this vector and u
+         */
+        double operator*(const Vector3 v) {
+            return v.x * x + v.y * y + v.z * z;
+        }
+
+        bool operator==(const Vector3 v){
+            return x==v.x && y==v.y && z==v.z;
         }
 
         /**
@@ -145,7 +150,7 @@ namespace bla {
          * @param v the other vector used in the calculation
          * @return the cross product of this vector and <b>v</b>
          */
-        inline Vector3 cross(Vector3 v) {
+        inline Vector3 cross(const Vector3 v) {
             return Vector3(
                     y * v.z - z * v.y,
                     z * v.x - x * v.z,
@@ -154,9 +159,9 @@ namespace bla {
         }
 
         /*
-    * Computes the distance between two vectors.
-    */
-        inline float dist(Vector3 v) {
+         * Computes the distance between two vectors.
+         */
+        inline float dist(const Vector3 v) {
             float dx = x - v.x;
             float dy = y - v.y;
             float dz = z - v.z;
@@ -172,7 +177,7 @@ namespace bla {
         }
 
         /**
-         * Normalizes the vector.
+         * Normalizes the vector, turning it into a unit vector.
          */
         inline void nor() {
             double l = len();

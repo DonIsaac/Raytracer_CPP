@@ -318,6 +318,14 @@ namespace bla {
             return Vector3(vec[0], vec[1], vec[2]);
         }
 
+        /**
+         * Gets a copy of the internal array used to store this <code>Matrix4</code>'s data.
+         * @return the matrix as an array
+         */
+        array<double, 16> getMatrix(){
+            return mat;
+        }
+
         string toString() {
             string s = "";
 
