@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/donisaac/Documents/Projects/Raytracer C++/./infrastructure/math/mat4.h
+vec3.h
+/Users/donisaac/Documents/Projects/Raytracer C++/./infrastructure/math/vec3.h
+array
+-
+
+/Users/donisaac/Documents/Projects/Raytracer C++/./infrastructure/math/vec3.h
+cmath
+-
+string
+-
+
+/Users/donisaac/Documents/Projects/Raytracer C++/main.cpp
+iostream
+-
+./infrastructure/math/vec3.h
+/Users/donisaac/Documents/Projects/Raytracer C++/./infrastructure/math/vec3.h
+./infrastructure/math/mat4.h
+/Users/donisaac/Documents/Projects/Raytracer C++/./infrastructure/math/mat4.h
+
