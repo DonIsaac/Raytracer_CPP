@@ -41,167 +41,100 @@ namespace bla {
          * @param ny the y value of the vector. Default value is 0.0
          * @param nz the z value of the vector. Default value is 0.0
          */
-        Vector3(double nx = 0.0, double ny = 0.0, double nz=0.0) {
-            x = nx;
-            y = ny;
-            z = nz;
-        }
+        Vector3(double _x = 0.0, double _y = 0.0, double _z=0.0);
 
-        Vector3 operator+(Vector3 &v) {
-            return Vector3(x + v.x, y + v.y, z + v.z);
-        }
+        Vector3 operator+(Vector3 &v);
 
-        Vector3& operator+=(Vector3 &v) {
-            this->x += v.x;
-            this->y += v.y;
-            this->z += v.z;
+        Vector3& operator+=(Vector3 &v);
 
-            return *this;
-        }
+        Vector3 operator-(Vector3 &v);
 
-        Vector3 operator-(Vector3 &v) {
-            return Vector3(x - v.x, y - v.y, z - v.z);
-        }
-
-        Vector3& operator-=(Vector3 &v) {
-            this->x -= v.x;
-            this->y -= v.y;
-            this->z -= v.z;
-
-            return *this;
-        }
+        Vector3& operator-=(Vector3 &v);
 
         /**
          * Scalar multiplication.
          * @param scalar the scalar
          * @return the vector scaled by <b>s</b>
          */
-        Vector3 operator*(double scalar) {
-            return Vector3(scalar * x, scalar * y, scalar * z);
-        }
+        Vector3 operator*(double scalar);
 
-        Vector3& operator*=(double scalar) {
-            this->x *= scalar;
-            this->y *= scalar;
-            this->z *= scalar;
-
-            return *this;
-        }
+        Vector3& operator*=(double scalar);
 
         /**
         * Scalar multiplication.
         * @param scalar the scalar
         * @return the vector scaled by <b>s</b>
         */
-        Vector3 operator*(int scalar) {
-            double s = (double) scalar;//the scalar as a double
-            return Vector3(s * x, s * y, s * z);
-        }
+        Vector3 operator*(int scalar);
 
-        Vector3& operator*=(int scalar) {
-            double s = (double) scalar;//the scalar as a double
-            this->x *= s;
-            this->y *= s;
-            this->z *= s;
-
-            return *this;
-        }
+        Vector3& operator*=(int scalar);
 
         /**
         * Scalar multiplication.
         * @param scalar the scalar
         * @return the vector scaled by <b>s</b>
         */
-        Vector3 operator*(float scalar) {
-            double s = (double) scalar;//the scalar as a double
-            return Vector3(s * x, s * y, s * z);
-        }
+        Vector3 operator*(float scalar);
 
-        Vector3 operator*=(float scalar) {
-            double s = (double) scalar;//the scalar as a double
-            x *= s;
-            y *= s;
-            z *= s;
-        }
+        Vector3 operator*=(float scalar);
 
         /**
          * Dot (inner) product.
          * @param u the other vector to use in the calculation
          * @return the dot product between this vector and u
          */
-        double operator*(const Vector3 v) {
-            return v.x * x + v.y * y + v.z * z;
-        }
+        double operator*(const Vector3 v);
 
-        bool operator==(const Vector3 v){
-            return x==v.x && y==v.y && z==v.z;
-        }
+        bool operator==(const Vector3 v);
 
         /**
          * Takes the dot product of this vector with itself (i.e: squaring the vector). Shorthand for v * v.
          * @return the result from the operation
          */
-        inline double sqr() {
-            return x * x + y * y + z * z;
-        }
+        inline double sqr();
 
         /**
          * Takes the cross product of this vector and <b>v</b>.
          * @param v the other vector used in the calculation
          * @return the cross product of this vector and <b>v</b>
          */
-        inline Vector3 cross(const Vector3 v) {
-            return Vector3(
-                    y * v.z - z * v.y,
-                    z * v.x - x * v.z,
-                    x * v.y - y * v.x
-            );
-        }
+        inline Vector3 cross(const Vector3 v);
 
         /*
          * Computes the distance between two vectors.
          */
-        inline float dist(const Vector3 v) {
-            float dx = x - v.x;
-            float dy = y - v.y;
-            float dz = z - v.z;
-
-            return sqrt(dx * dx + dy * dy + dz * dz);
-        }
+        inline float dist(const Vector3 v);
 
         /**
          * @return the length of the vector
          */
-        inline double len() {
-            return sqrt(x * x + y * y + z * z);
-        }
+        inline double len();
 
         /**
          * Normalizes the vector, turning it into a unit vector.
          */
-        inline void nor() {
-            double l = len();
-            x /= l;
-            y /= l;
-            z /= l;
-        }
+        inline void norm();
 
         /**
          * @return the vector as a string
          */
-        inline string toString() {
-            return "<" + to_string(x) + ", " + to_string(y) + ", " + to_string(z) + ">";
-        }
+        inline string toString();
+
+      // static singletons
+
+      /**Zero vector.*/
+      static const Vector3 zeroVec;
+
+      /**Unit vector I.*/
+      static const Vector3 iVec;
+
+      /**Unit vector J.*/
+      static const Vector3 jVec;
+
+      /**Unit vector K.*/
+      static const Vector3 kVec;
 
     };
 
-    /**Zero vector.*/
-    static const Vector3 VEC_ZERO = Vector3(0.0, 0.0, 0.0);
-    /**Unit vector I.*/
-    static const Vector3 VEC_I = Vector3(1.0, 0.0, 0.0);
-    /**Unit vector J.*/
-    static const Vector3 VEC_J = Vector3(0.0, 1.0, 0.0);
-    /**Unit vector K.*/
-    static const Vector3 VEC_K = Vector3(0.0, 0.0, 1.0);
 }
 #endif //RAYTRACER_C_VEC3_H
